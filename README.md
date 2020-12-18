@@ -1,16 +1,21 @@
 # wechat
 
-> A Vue.js project
+一个聊天室程序
 
-## Build Setup
+
+## 聊天室搭建
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# 运行服务器
+npm run server
+
+# 运行程序
 npm run dev
 
+访问  http://localhost:8080/
 # build for production with minification
 npm run build
 

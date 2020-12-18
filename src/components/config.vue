@@ -11,10 +11,40 @@
             <div class="item"><span class="icon-history iconfont"></span><p>清除缓存</p></div>
             <el-button class="button" type="danger">退出</el-button>
         </div>
+        <div class="idea" id="idea" v-if="!user.length">
+          <div class="wrapper">
+            <div class="message">
+              <p>提示</p>
+              <p>需要登录后才能查看哦</p>
+            </div>
+            <div class="go"><span @click="goLogin">去登陆</span><span @click="goHome">返回首页</span></div>
+          </div>
+        </div>
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
+  created () {
+    // console.log(this.user.length)
+  },
+  computed: {
+    ...mapState([
+      'user'
+    ])
+  },
+  methods: {
+    stop () {
+      let idea = document.getElementById('idea')
+      idea.stopPropagation()
+    },
+    goHome () {
+      this.$router.push('/home')
+    },
+    goLogin () {
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -62,5 +92,44 @@ export default {
         width: 80%;
         height: 80px;
     }
+}
+.idea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($color: #000000, $alpha: .15);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .wrapper {
+    width: 70vw;
+    height: 300px;
+    background: white;
+    border-radius: 30px;
+    text-align: center;
+    .message {
+      box-sizing: border-box;
+      height: 210px;
+      padding-top: 60px;
+    }
+    .go {
+      display: flex;
+      flex: 1;
+      height: 90px;
+      color: #0582cd;
+      font-weight: 700;
+      span {
+        padding-top: 20px;
+        border-top: 1px solid rgba($color: #3856aa, $alpha: .35);
+        width: 50%;
+      }
+      span:nth-of-type(1) {
+        border-right: 1px solid rgba($color: #3856aa, $alpha: .35);
+      }
+    }
+  }
 }
 </style>

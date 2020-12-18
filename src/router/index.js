@@ -8,6 +8,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      redirect: '/home'
+    },
+    {
       path: '/home',
       component: () => import('@/components/home'),
       // component: () => import('@/components/room1'),
@@ -21,6 +25,10 @@ export default new Router({
     {
       path: '/config',
       component: () => import('@/components/config')
+    },
+    {
+      path: '/login',
+      component: () => import('@/components/login')
     }
   ]
 })

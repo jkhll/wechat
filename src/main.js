@@ -8,6 +8,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './iconfont/iconfont.css'
 import fastclick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
+import store from './store'
+import VueSocketio from 'vue-socket.io'
+// import socketio from 'socket.io-client'
 
 Vue.use(ElementUI)
 Vue.use(VueLazyload, {
@@ -15,11 +18,18 @@ Vue.use(VueLazyload, {
 })
 fastclick.attach(document.body)
 Vue.config.productionTip = false
+Vue.use(new VueSocketio({
+  debug: true,
+  connection: 'http://localhost:3000',
+  vuex: {}
+}))
 
+// Vue.use(VueSocketio, socketio('http://locolhost:3000'))
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
